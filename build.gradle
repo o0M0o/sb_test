@@ -45,6 +45,15 @@ configurations {
     providedRuntime
 }
 
+//可以将java目录下的所有非.java资源打包到classes下
+sourceSets {
+    main {
+        resources {
+            srcDir 'src/main/kotlin'
+        }
+    }
+}
+
 dependencies {
     implementation('org.springframework.boot:spring-boot-starter-freemarker')
     implementation('org.springframework.boot:spring-boot-starter-web')
