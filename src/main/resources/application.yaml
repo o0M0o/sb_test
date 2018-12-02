@@ -12,9 +12,9 @@ server:
 spring:
   # for db
   datasource:
-    url: jdbc:mysql://localhost:3306/db_sb
+    url: jdbc:mysql://localhost:3306/db_sb?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8
     username: root
-    password: rt99123
+    password: 123456
 
   # for freemarker
   freemarker:
@@ -28,3 +28,10 @@ spring:
     expose-spring-macro-helpers: false
     suffix: .ftl
     template-loader-path: classpath:/templates/
+
+#
+# for mybatis
+#
+mybatis:
+  typeAliasesPackage: com.wxm.demo.**.entity
+  mapperLocations: classpath*:com/wxm/demo/**/*Mapper.xml

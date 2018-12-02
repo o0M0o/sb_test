@@ -1,14 +1,19 @@
 package com.wxm.demo.controller
 
-import org.springframework.web.bind.annotation.RequestMapping
+import com.wxm.demo.util.HttpResult
+import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RestController
 import org.springframework.web.servlet.ModelAndView
 
 @RestController
 class LoginController {
-    @RequestMapping("/login")
+    @GetMapping("/login")
     fun login(): ModelAndView {
         return ModelAndView("login")
     }
 
+    @GetMapping("/doLogin")
+    fun doLogin(): HttpResult {
+        return HttpResult.instance("login")
+    }
 }

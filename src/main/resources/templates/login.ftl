@@ -5,7 +5,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="${jsPath}/login.css" type="text/css"/>
+    <link rel="stylesheet" href="${cssPath}/login.css" type="text/css"/>
     <script src="${jsPath}/jquery-3.3.1.js"></script>
 </head>
 <body>
@@ -15,9 +15,9 @@
 
 <div id="id01" class="modal">
 
-    <form class="modal-content animate" action="/action_page.php">
+    <form class="modal-content animate" action="/doLogin">
         <div class="imgcontainer">
-            <span onclick="$('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+            <span onclick="$('#id01').get(0).style.display='none'" class="close" title="Close Modal">&times;</span>
             <img src="${imgPath}/img_avatar2.png" alt="Avatar" class="avatar">
         </div>
 
@@ -35,7 +35,7 @@
         </div>
 
         <div class="container" style="background-color:#f1f1f1">
-            <button type="button" onclick="$('id01').style.display='none'" class="cancelbtn">
+            <button type="button" onclick="$('#id01').get(0).style.display='none'" class="cancelbtn">
                 Cancel
             </button>
             <span class="psw">Forgot <a href="#">password?</a></span>
@@ -45,7 +45,7 @@
 
 <script>
     // Get the modal
-    var modal = $('id01');
+    var modal = $('#id01');
     window.onclick = function (event) {
         if (event.target == modal) {
             modal.style.display = "none";
