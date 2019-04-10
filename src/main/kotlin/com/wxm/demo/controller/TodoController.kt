@@ -5,9 +5,7 @@ import com.wxm.demo.service.TodoService
 import com.wxm.demo.service.UserService
 import com.wxm.demo.util.HttpResult
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 import org.springframework.web.servlet.ModelAndView
 
 @RestController
@@ -24,5 +22,23 @@ class TodoController {
     @GetMapping("/todos")
     fun allUser(): List<TodoDO> {
         return todoService.all()
+    }
+
+    @PutMapping("/save")
+    fun save(td : TodoDO): HttpResult {
+        return if(todoService.addTodo(td) == 1)    {
+            HttpResult.successInstance()
+        } else  {
+            HttpResult.failureInstance()
+        }
+    }
+
+    @DeleteMapping("/remove/{tdID}")
+    fun delete(@PathVariable("tdID") tdID : Int): HttpResult {
+        return if(todoService.deleteTodoById(tdID) == 1)    {
+            HttpResult.successInstance()
+        } else  {
+            HttpResult.failureInstance()
+        }
     }
 }

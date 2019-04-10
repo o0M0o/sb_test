@@ -5,6 +5,7 @@ import com.wxm.demo.entity.TodoDO
 interface TodoService {
     fun getTodoById(id: Int): TodoDO?
     fun addTodo(record: TodoDO): Int
+    fun deleteTodoById(id: Int): Int
 
     fun all(): List<TodoDO>
 }

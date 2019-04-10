@@ -1,54 +1,66 @@
 var prefix = "/todo"
 $(function() {
-    show();
+    loadTodos();
 });
 
+function loadTodos(){
+    $.ajax({
+        url : prefix + '/todos',
+        success : function(data) {
+            var html = '<ul>';
+            for(var i=0; i<data.length; i++) {
+                html += '<li>' + data[i].content + '<button class="remove" id="' + data[i].id  + '">x</button></li>';
+            };
+            html += '</ul>';
 
-function get_todos() {
-    var todos = new Array;
-    var todos_str = localStorage.getItem('todo');
-    if (todos_str !== null) {
-        todos = JSON.parse(todos_str);
-    }
-    return todos;
+            document.getElementById('todos').innerHTML = html;
+
+            var buttons = document.getElementsByClassName('remove');
+            for (var i=0; i < buttons.length; i++) {
+                buttons[i].addEventListener('click', remove);
+            };
+        }
+    });
 }
 
 function add() {
-    var task = document.getElementById('task').value;
+    $.ajax({
+        cache : true,
+        type : "PUT",
+        url : prefix + "/save",
+        data : $('#todoForm').serialize(),
+        async : false,
+        error : function(request) {
+            laryer.alert("Connection error");
+        },
+        success : function(data) {
+            if (data.msg != "success") {
+                parent.layer.alert("保存失败")
+            }
 
-    var todos = get_todos();
-    todos.push(task);
-    localStorage.setItem('todo', JSON.stringify(todos));
-
-    show();
-
-    return false;
+            loadTodos();
+        }
+    });
 }
+
 
 function remove() {
     var id = this.getAttribute('id');
-    var todos = get_todos();
-    todos.splice(id, 1);
-    localStorage.setItem('todo', JSON.stringify(todos));
+    $.ajax({
+        cache : true,
+        type : "DELETE",
+        url : prefix + "/remove/" + id,
+        async : false,
+        error : function(request) {
+            laryer.alert("Connection error");
+        },
+        success : function(data) {
+            if (data.msg != "success") {
+                parent.layer.alert("删除失败")
+            }
 
-    show();
-
-    return false;
+            loadTodos();
+        }
+    });
 }
 
-function show() {
-    var todos = get_todos();
-
-    var html = '<ul>';
-    for(var i=0; i<todos.length; i++) {
-        html += '<li>' + todos[i] + '<button class="remove" id="' + i  + '">x</button></li>';
-    };
-    html += '</ul>';
-
-    document.getElementById('todos').innerHTML = html;
-
-    var buttons = document.getElementsByClassName('remove');
-    for (var i=0; i < buttons.length; i++) {
-        buttons[i].addEventListener('click', remove);
-    };
-}
