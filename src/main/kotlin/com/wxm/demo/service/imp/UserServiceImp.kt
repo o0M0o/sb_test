@@ -1,7 +1,8 @@
-package com.wxm.demo.service
+package com.wxm.demo.service.imp
 
 import com.wxm.demo.dao.UserDao
 import com.wxm.demo.entity.UserDO
+import com.wxm.demo.service.UserService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 

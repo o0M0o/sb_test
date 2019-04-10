@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wxm.demo.dao.TodoDao" >
+    <select id="selectById"  parameterType="java.lang.Integer" >
+        select * from todo where id = #{id}
+    </select>
+
+    <select id="all" >
+        select * from todo
+    </select>
+
+    <delete id="deleteById" parameterType="java.lang.Integer" >
+        delete from todo where id = #{id}
+    </delete>
+
+    <insert id="insert" parameterType="com.wxm.demo.entity.TodoDO" >
+        insert into todo (id, content, create_time, todo_time, active)
+        values (#{id}, #{content}, #{createTime}, #{todoTime}, #{active})
+    </insert>
+
+    <update id="updateById" parameterType="com.wxm.demo.entity.TodoDO" >
+        update todo
+        <set >
+            <if test="content != null" >
+                content = #{content},
+            </if>
+            <if test="createTime != null" >
+                create_time = #{createTime},
+            </if>
+            <if test="todoTime != null" >
+                todo_time = #{todoTime},
+            </if>
+            <if test="active != null" >
+                active = #{active},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+</mapper>

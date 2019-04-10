@@ -33,5 +33,7 @@ spring:
 # for mybatis
 #
 mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
   typeAliasesPackage: com.wxm.demo.**.entity
-  mapperLocations: classpath*:com/wxm/demo/**/*Mapper.xml
+  mapper-locations: mybatis/**/*Mapper.xml
