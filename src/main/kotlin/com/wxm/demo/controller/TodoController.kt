@@ -8,6 +8,13 @@ import com.wxm.demo.util.PageUtil
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.*
 import org.springframework.web.servlet.ModelAndView
+import java.sql.Date
+import sun.security.x509.OIDMap.addAttribute
+import org.springframework.ui.Model
+import org.springframework.web.bind.annotation.PathVariable
+import org.springframework.web.bind.annotation.GetMapping
+
+
 
 @RestController
 @RequestMapping("/todo")
@@ -17,7 +24,9 @@ class TodoController {
 
     @GetMapping("/index")
     fun todo(): ModelAndView {
-        return ModelAndView("todo")
+        val model = ModelAndView("todo")
+        model.addObject("current", Date(System.currentTimeMillis()))
+        return model
     }
 
     @GetMapping("/todos")
@@ -39,6 +48,16 @@ class TodoController {
             HttpResult.failureInstance()
         }
     }
+
+    @GetMapping("/edit/{id}")
+    fun edit(@PathVariable("id") id: Int): ModelAndView {
+        val td = todoService.getTodoById(id)
+        val model = ModelAndView("todoEdit")
+        model.addObject("todo", td)
+        return model
+    }
+
+
 
     @DeleteMapping("/remove/{tdID}")
     fun delete(@PathVariable("tdID") tdID : Int): HttpResult {

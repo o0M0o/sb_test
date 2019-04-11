@@ -36,15 +36,6 @@ CREATE TABLE `sys_role` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `sys_role`
---
-
-LOCK TABLES `sys_role` WRITE;
-/*!40000 ALTER TABLE `sys_role` DISABLE KEYS */;
-/*!40000 ALTER TABLE `sys_role` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `sys_user`
 --
 
@@ -64,14 +55,25 @@ CREATE TABLE `sys_user` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `sys_user`
+-- Table structure for table `todo`
 --
 
-LOCK TABLES `sys_user` WRITE;
-/*!40000 ALTER TABLE `sys_user` DISABLE KEYS */;
-INSERT INTO `sys_user` VALUES (1,'admin','admin','2018-12-02 07:47:35','2018-12-02 07:47:35',0);
-/*!40000 ALTER TABLE `sys_user` ENABLE KEYS */;
-UNLOCK TABLES;
+DROP TABLE IF EXISTS `todo`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `todo` (
+                      `id` int(11) NOT NULL AUTO_INCREMENT,
+                      `content` varchar(2048) NOT NULL COMMENT '代办内容',
+                      `todo_time` datetime NOT NULL COMMENT '代办时间',
+                      `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+                      `active` smallint(6) NOT NULL DEFAULT '1' COMMENT '是否有效 : 0 - 无效   1 - 有效',
+                      PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8 COMMENT='待办事务表';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping routines for database 'db_sb'
+--
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -82,4 +84,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-12-02 22:01:35
+-- Dump completed on 2019-04-11 11:52:31

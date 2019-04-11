@@ -68,6 +68,6 @@
     <script src="${jsPath}/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
 
     <script src="${jsPath}/layui/layui.js"></script>
-    <script src="${jsPath}/todo/todo.js"></script>
+    <script src="${jsPath}/todo/todoEdit.js"></script>
 </body>
 </html>
