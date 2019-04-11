@@ -33,9 +33,8 @@
                         <div class="form-group">
                             <label class="col-sm-4 control-label">todo时间：</label>
                             <div class="col-sm-4">
-                                <input id="todoTime" name="todoTime"
-                                       th:value="${current}" class="form-control"
-                                       type="text">
+                                <input id="todoTime" name="todoTime" value="${current}"
+                                       class="form-control" type="text">
                             </div>
                         </div>
                         <div class="form-group">

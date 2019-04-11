@@ -52,9 +52,9 @@ class TodoController {
     @GetMapping("/edit/{id}")
     fun edit(@PathVariable("id") id: Int): ModelAndView {
         val td = todoService.getTodoById(id)
-        val model = ModelAndView("todoEdit")
-        model.addObject("todo", td)
-        return model
+        return ModelAndView("todoEdit").apply {
+            addObject("todo", td)
+        }
     }
 
 

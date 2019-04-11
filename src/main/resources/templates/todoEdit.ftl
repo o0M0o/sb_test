@@ -23,24 +23,35 @@
             <div class="ibox float-e-margins">
                 <div class="ibox-content">
                     <form class="form-horizontal m-t" id="todoForm">
+                        <input type="hidden" name="id" id="id" , value="${todo.id}">
+                        <input type="hidden" name="active" id="active" , value="${todo.active}">
+                        <input type="hidden" name="active" id="createTime" , value="${todo.createTime}">
                         <div class="form-group">
                             <label class="col-sm-4 control-label">todo内容：</label>
                             <div class="col-sm-4">
-                                <input id="content" name="content" class="form-control"
+                                <input id="content" name="content" value="${todo.content}"
                                        type="text">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-4 control-label">todo时间：</label>
                             <div class="col-sm-4">
-                                <input id="todoTime" name="todoTime"
-                                       th:value="${current}" class="form-control"
-                                       type="text">
+                                <input id="todoTime" name="todoTime" value="${todo.todoTime}"
+                                       class="form-control" type="text">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-4">
+                                <select id="active" name="active" class="dropdown">
+                                    <!--<option value="">请选择是否有效</option>-->
+                                    <option <#if todo.active == 1> selected="selected" </#if> value="1">有效</option>
+                                    <option <#if todo.active != 1> selected="selected" </#if> value="0">无效</option>
+                                </select>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-sm-4 col-sm-offset-3">
-                                <button type="submit" class="btn btn-primary" onclick="add()">提交</button>
+                                <button type="submit" class="btn btn-primary" onclick="save()">提交</button>
                             </div>
                         </div>
                     </form>
@@ -49,9 +60,6 @@
         </div>
     </div>
 </div>
-<hr>
-<table id="todoTable" data-mobile-responsive="true">
-
 
     <script src="https://code.jquery.com/jquery-3.4.0.js"
             integrity="sha256-DYZMCC8HTC+QDr5QNaIcfR7VSPtcISykd+6eSmBW5qo="
