@@ -6,16 +6,21 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <link rel="stylesheet" href="${cssPath}/bootstrap.min.css">
-    <script src="${jsPath}/jquery-3.3.1.js"></script>
-    <script src="${jsPath}/layui.js"></script>
-    <script src="${jsPath}/todo/todo.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <link href="${cssPath}/plugins/bootstrap-table/bootstrap-table.min.css" rel="stylesheet">
 </head>
 <body>
 <div class="ibox-content">
     <form class="form-horizontal m-t" id="todoForm">
         <div class="form-group">
-            <label class="col-sm-2 control-label">任务名称：</label>
+            <label class="col-sm-2 control-label">备注内容：</label>
             <div class="col-sm-4">
                 <input id="content" name="content" class="form-control"
                        type="text">
@@ -33,24 +38,22 @@
 <button id="add" onclick="add()">添加</button>
 <hr>
 <div id="todos"></div>
-<script type="text/javascript">
-    layui.use('upload', function () {
-        var upload = layui.upload;
-        //执行实例
-        var uploadInst = upload.render({
-            elem: '#test1', //绑定元素
-            url: '/common/sysFile/upload', //上传接口
-            size: 1000,
-            accept: 'file',
-            done: function (r) {
-                layer.msg(r.msg);
-                app.getData();
-            },
-            error: function (r) {
-                layer.msg(r.msg);
-            }
-        });
-    });
-</script>
+<table id="todoTable" data-mobile-responsive="true">
+    <script src="https://code.jquery.com/jquery-3.4.0.js"
+            integrity="sha256-DYZMCC8HTC+QDr5QNaIcfR7VSPtcISykd+6eSmBW5qo="
+            crossorigin="anonymous"></script>
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+
+
+    <script src="${jsPath}/plugins/bootstrap-table/bootstrap-table.min.js"></script>
+    <script src="${jsPath}/plugins/bootstrap-table/bootstrap-table-mobile.min.js"></script>
+    <script src="${jsPath}/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
+
+    <script src="${jsPath}/layui/layui.js"></script>
+    <script src="${jsPath}/todo/todo.js"></script>
 </body>
 </html>

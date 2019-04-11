@@ -4,6 +4,7 @@ import com.wxm.demo.entity.TodoDO
 import com.wxm.demo.service.TodoService
 import com.wxm.demo.service.UserService
 import com.wxm.demo.util.HttpResult
+import com.wxm.demo.util.PageUtil
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.*
 import org.springframework.web.servlet.ModelAndView
@@ -20,7 +21,13 @@ class TodoController {
     }
 
     @GetMapping("/todos")
-    fun allUser(): List<TodoDO> {
+    fun allTodo(): PageUtil {
+        val td = todoService.all()
+        return PageUtil(td)
+    }
+
+    @GetMapping("/todos1")
+    fun allTodoNoPage(): List<TodoDO> {
         return todoService.all()
     }
 
