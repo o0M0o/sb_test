@@ -10,12 +10,14 @@ server:
 # for spring
 #
 spring:
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
   # for db
   datasource:
     url: jdbc:mysql://localhost:3306/db_sb?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8
     username: root
     password: 123456
-
   # for freemarker
   freemarker:
     allow-request-override: false
@@ -37,3 +39,11 @@ mybatis:
     map-underscore-to-camel-case: true
   typeAliasesPackage: com.wxm.demo.**.entity
   mapper-locations: mybatis/**/*Mapper.xml
+
+#
+# for log
+#
+logging:
+  level:
+    com.wxm.demo: DEBUG
+    org.springfromework.web: info

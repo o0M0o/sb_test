@@ -33,7 +33,7 @@
                         <div class="form-group">
                             <label class="col-sm-4 control-label">todo时间：</label>
                             <div class="col-sm-4">
-                                <input id="todoTime" name="todoTime" value="${current}"
+                                <input id="todoTime" name="todoTime" value="${current?string["yyyy-MM-dd HH:mm:ss"]}"
                                        class="form-control" type="text">
                             </div>
                         </div>
