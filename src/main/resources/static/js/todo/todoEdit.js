@@ -8,20 +8,22 @@ layui.use('layer', function(){
 function edit() {
     $.ajax({
         cache: true,
-        type: "PUT",
-        url: prefix + "/save",
+        type: "POST",
+        url: prefix + "/modify",
         data: $('#todoForm').serialize(),
         async: false,
         error: function (request) {
-            laryer.alert("Connection error");
+            console.error("Connection error")
+            parent.location.reload()
         },
         success: function (data) {
             if (data.msg !== "success") {
-                parent.layer.alert("添加失败")
+                console.error("Connection error")
             } else {
-                layer.msg("添加成功");
-                reLoad()
+                console.info("modify success")
             }
+
+            parent.location.reload()
         }
     });
 }

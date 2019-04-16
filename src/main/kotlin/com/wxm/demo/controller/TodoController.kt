@@ -49,6 +49,15 @@ class TodoController {
         }
     }
 
+    @PostMapping("/modify")
+    fun modify(td : TodoDO): HttpResult {
+        return if(todoService.modifyTodo(td) == 1)    {
+            HttpResult.successInstance()
+        } else  {
+            HttpResult.failureInstance()
+        }
+    }
+
     @GetMapping("/edit/{id}")
     fun edit(@PathVariable("id") id: Int): ModelAndView {
         val td = todoService.getTodoById(id)
@@ -56,8 +65,6 @@ class TodoController {
             addObject("todo", td)
         }
     }
-
-
 
     @DeleteMapping("/remove/{tdID}")
     fun delete(@PathVariable("tdID") tdID : Int): HttpResult {

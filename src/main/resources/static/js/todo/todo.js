@@ -153,8 +153,11 @@ function edit(id) {
         type : 2,
         title : '编辑',
         maxmin : true,
-        shadeClose : false, // 点击遮罩关闭层
-        area : [ '800px', '520px' ],
-        content : prefix + '/edit/' + id // iframe的url
+        shadeClose : false,
+        area : [ '600px', '420px' ],
+        content : prefix + '/edit/' + id,
+        end: function () {
+            reLoad()
+        }
     });
 }

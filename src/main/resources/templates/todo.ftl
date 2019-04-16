@@ -6,13 +6,11 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
-    <!-- Optional theme -->
+    <link rel="stylesheet" href="${cssPath}/bootstrap.min.css" rel="stylesheet">
+    <!--
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
           integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+          -->
 
     <link href="${cssPath}/plugins/bootstrap-table/bootstrap-table.min.css" rel="stylesheet">
 </head>
@@ -51,16 +49,8 @@
 <hr>
 <table id="todoTable" data-mobile-responsive="true">
 
-
-    <script src="https://code.jquery.com/jquery-3.4.0.js"
-            integrity="sha256-DYZMCC8HTC+QDr5QNaIcfR7VSPtcISykd+6eSmBW5qo="
-            crossorigin="anonymous"></script>
-
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-            crossorigin="anonymous"></script>
-
+    <script src="${jsPath}/jquery-3.4.0.js"></script>
+    <script src="${jsPath}/bootstrap.min.js"></script>
 
     <script src="${jsPath}/plugins/bootstrap-table/bootstrap-table.min.js"></script>
     <script src="${jsPath}/plugins/bootstrap-table/bootstrap-table-mobile.min.js"></script>

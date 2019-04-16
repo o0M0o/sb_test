@@ -26,6 +26,10 @@ class TodoServiceImp: TodoService {
         return todo.deleteById(id)
     }
 
+    override fun modifyTodo(record: TodoDO): Int {
+        return todo.updateById(record)
+    }
+
     override fun all(): List<TodoDO> {
         return todo.all()
     }

@@ -8,10 +8,11 @@ class TodoDO {
     var id: Int = 0
     var content: String = ""
 
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(timezone = "GMT+8", pattern="yyyy-MM-dd HH:mm:ss")
     var todoTime: Date = Date(System.currentTimeMillis())
 
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(timezone = "GMT+8", pattern="yyyy-MM-dd HH:mm:ss")
     var createTime: Date = Date(System.currentTimeMillis())
+
     var active: Int = 1
 }
