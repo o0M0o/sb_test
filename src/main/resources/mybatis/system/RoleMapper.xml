@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.wxm.demo.dao.RoleDO" >
-    <resultMap id="BaseResultMap" type="com.wxm.demo.entity.RoleDO" >
+<mapper namespace="com.wxm.demo.user.dao.RoleDao" >
+    <resultMap id="BaseResultMap" type="com.wxm.demo.user.entity.RoleDO" >
         <id column="id" property="id" jdbcType="INTEGER" />
         <result column="name" property="name" jdbcType="VARCHAR" />
         <result column="create_time" property="create_time" jdbcType="TIMESTAMP" />
@@ -31,12 +31,12 @@
         where id = #{id}
     </delete>
 
-    <insert id="insert" parameterType="com.wxm.demo.entity.RoleDO" >
+    <insert id="insert" parameterType="com.wxm.demo.user.entity.RoleDO" >
         insert into sys_role (name, del_flag)
         values (#{name}, #{del_flag})
     </insert>
 
-    <update id="updateById" parameterType="com.wxm.demo.entity.RoleDO" >
+    <update id="updateById" parameterType="com.wxm.demo.user.entity.RoleDO" >
         update sys_role
         <set >
             <if test="name != null" >

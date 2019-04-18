@@ -1,15 +1,21 @@
 buildscript {
     ext {
-        kotlinVersion = '1.3.11'
+        kotlinVersion = '1.3.30'
         springBootVersion = '2.1.1.RELEASE'
     }
     repositories {
+        maven{ url 'http://maven.aliyun.com/nexus/content/groups/public/'}
+        maven { url "https://plugins.gradle.org/m2/" }
         mavenCentral()
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlinVersion}")
         classpath("org.jetbrains.kotlin:kotlin-allopen:${kotlinVersion}")
+
+        classpath("net.ltgt.gradle:gradle-apt-plugin:0.9")
+
+        //kapt 'groupId:artifactId:version'
     }
 }
 
@@ -19,6 +25,14 @@ apply plugin: 'eclipse-wtp'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 apply plugin: 'war'
+
+apply plugin: 'idea'
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: "net.ltgt.apt"
+
+apply plugin: 'kotlin-kapt'
+
 
 group = 'com.wxm'
 version = '0.0.1'
@@ -38,12 +52,14 @@ compileTestKotlin {
 }
 
 repositories {
+    maven{ url 'http://maven.aliyun.com/nexus/content/groups/public/'}
     mavenCentral()
 }
 
 configurations {
     providedRuntime
 }
+
 
 //可以将java目录下的所有非.java资源打包到classes下
 sourceSets {
@@ -52,6 +68,19 @@ sourceSets {
             srcDir 'src/main/kotlin'
         }
     }
+}
+
+/**
+ * 配置mapstruct任务
+ */
+tasks.withType(JavaCompile) {
+    options.compilerArgs = [
+            '-Amapstruct.suppressGeneratorTimestamp=true',
+            //默认交由spring管理，在外部可以直接使用@Autowired注入mapper
+            '-Amapstruct.defaultComponentModel=spring',
+            '-Amapstruct.suppressGeneratorVersionInfoComment=true',
+            '-Amapstruct.unmappedTargetPolicy=IGNORE'
+    ]
 }
 
 dependencies {
@@ -67,15 +96,28 @@ dependencies {
     runtimeOnly('mysql:mysql-connector-java')
     //implementation('tk.mybatis:mapper-spring-boot-starter:1.1.0')
 
+    // JPA
+    implementation('org.springframework.boot:spring-boot-starter-data-jpa')
+
+    // mapstruct
+    implementation('org.mapstruct:mapstruct-jdk8:1.2.0.Final')
+    //annotationProcessor("org.mapstruct:mapstruct-processor:1.2.0.Final")
+    kapt("org.mapstruct:mapstruct-processor:1.3.0.Final")
+
     // swagger
-    compile('io.springfox:springfox-swagger2:2.8.0')
-    compile('io.springfox:springfox-swagger-ui:2.8.0')
-    compile 'io.swagger:swagger-jersey2-jaxrs:1.5.8'
-    compile('com.mangofactory:swagger-springmvc:1.0.2')
-    compile('com.mangofactory:swagger-models:1.0.2')
-    compile('com.wordnik:swagger-annotations:1.3.11')
+    implementation('io.springfox:springfox-swagger2:2.8.0') {
+        exclude group: 'org.mapstruct', module: 'mapstruct'
+    }
+    implementation('io.springfox:springfox-swagger-ui:2.8.0') {
+        exclude group: 'org.mapstruct', module: 'mapstruct'
+    }
+    implementation 'io.swagger:swagger-jersey2-jaxrs:1.5.8'
+    implementation('com.mangofactory:swagger-springmvc:1.0.2')
+    implementation('com.mangofactory:swagger-models:1.0.2')
+    implementation('com.wordnik:swagger-annotations:1.3.11')
 
     runtimeOnly('org.springframework.boot:spring-boot-devtools')
     providedRuntime('org.springframework.boot:spring-boot-starter-tomcat')
     testImplementation('org.springframework.boot:spring-boot-starter-test')
+
 }

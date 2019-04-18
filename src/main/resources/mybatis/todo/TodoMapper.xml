@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.wxm.demo.dao.TodoDao" >
-    <resultMap id="BaseResultMap" type="com.wxm.demo.entity.TodoDO" >
+<mapper namespace="com.wxm.demo.todo.dao.TodoDao" >
+    <resultMap id="BaseResultMap" type="com.wxm.demo.todo.entity.TodoDO" >
         <id column="id" property="id" jdbcType="INTEGER" />
         <result column="content" property="content" jdbcType="VARCHAR" />
         <result column="create_time" property="createTime" jdbcType="DATE" />
@@ -21,12 +21,12 @@
         delete from todo where id = #{id}
     </delete>
 
-    <insert id="insert" parameterType="com.wxm.demo.entity.TodoDO" >
+    <insert id="insert" parameterType="com.wxm.demo.todo.entity.TodoDO" >
         insert into todo (id, content, create_time, todo_time, active)
         values (#{id}, #{content}, #{createTime}, #{todoTime}, #{active})
     </insert>
 
-    <update id="updateById" parameterType="com.wxm.demo.entity.TodoDO" >
+    <update id="updateById" parameterType="com.wxm.demo.todo.entity.TodoDO" >
         update todo
         <set >
             <if test="content != null" >
