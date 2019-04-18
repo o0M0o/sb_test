@@ -9,6 +9,7 @@ import com.wxm.demo.todo.entity.TodoMapper
 import io.swagger.annotations.Api
 import io.swagger.annotations.ApiOperation
 import io.swagger.annotations.ApiParam
+import org.mapstruct.factory.Mappers
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
@@ -25,8 +26,8 @@ class TodoController {
     @Autowired
     lateinit var todoService: TodoService
 
-    @Autowired
-    lateinit var todoMapper: TodoMapper
+    val todoMapper: TodoMapper
+        get() = Mappers.getMapper(TodoMapper::class.java)
 
     @GetMapping("/index")
     @ApiOperation(value = "获取todo页面", response = ModelAndView::class)
